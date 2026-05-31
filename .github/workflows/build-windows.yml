@@ -24,7 +24,7 @@ jobs:
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile --name svg2pdf main.py
+          pyinstaller --onefile --name svg2pdf tools.py
 
       - name: Show build output
         run: |

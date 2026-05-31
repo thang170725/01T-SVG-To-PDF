@@ -1,0 +1,51 @@
+name: Build SVG2PDF
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+      - run: pip install pyinstaller
+
+      - run: |
+          pyinstaller \
+          --onefile \
+          --name svg2pdf \
+          tools.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svg2pdf-linux
+          path: dist/svg2pdf
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+      - run: pip install pyinstaller
+
+      - run: |
+          pyinstaller --onefile --name svg2pdf tools.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svg2pdf-windows
+          path: dist/svg2pdf.exe

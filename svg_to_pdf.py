@@ -28,6 +28,7 @@ def from_svg_to_pdf(
             )
             temp_pdf.close()
 
+            # covert one .svg to one .pdf
             cairosvg.svg2pdf(
                 url=svg_path,
                 write_to=temp_pdf.name

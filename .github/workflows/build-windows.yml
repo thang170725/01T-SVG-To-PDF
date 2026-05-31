@@ -24,7 +24,12 @@ jobs:
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile --name svg2pdf tools.py
+          pyinstaller `
+          --onefile `
+          --collect-all cairosvg `
+          --collect-all cairocffi `
+          --name svg2pdf `
+          tools.py
 
       - name: Show build output
         run: |
